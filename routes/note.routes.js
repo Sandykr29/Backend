@@ -16,6 +16,16 @@ noteRouter.post("/create",async(req,res)=>{
     }
 })
 
+noteRouter.get("/all",async(req,res)=>{
+    
+    try {
+        const notes=await NoteModel.find()
+        res.status(200).send(notes)
+    } catch (error) {
+        res.status(400).send({"error":error})
+    }
+})
+
 noteRouter.get("/",auth,async(req,res)=>{
     
     try {

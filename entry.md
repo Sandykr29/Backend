@@ -1,0 +1,1 @@
+["What is the equator?","The equator is an imaginary line around the Earth that is equidistant from the North and South Poles. It divides the Earth into the Northern Hemisphere and the Southern Hemisphere and is characterized by minimal seasonal variation in temperature."]

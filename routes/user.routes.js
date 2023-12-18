@@ -5,6 +5,11 @@ const bcrypt = require('bcrypt');
 const userRouter=express.Router()
 const jwt=require("jsonwebtoken")
 
+const getAdminAccess=(str)=>{
+    let data=str.trim().split(' ');
+    return data[0];
+}
+
 userRouter.get("/",async(req,res)=>{
     try {
         const users=await UserModel.find()
@@ -37,7 +42,7 @@ userRouter.post("/login",async(req,res)=>{
         const user=await UserModel.findOne({email})
         bcrypt.compare(pass, user.pass, async(err, result) =>{
            if(result){
-const token=jwt.sign({subject:user.subject},"masai")
+const token=jwt.sign({subject:user.subject,userame:getAdminAccess(user.username)},"masai")
 res.status(200).send({"msg":"Login Successfull !","token":token})
            }else{
             res.status(200).send({"msg":"Wrong Credentials"})
